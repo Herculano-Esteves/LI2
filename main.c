@@ -6,7 +6,6 @@
 
 
 int main() {
-    int x = soma(1,4);
-    printf("%d\n",x);
+    //aqui testem com scanf e printf como quiserem
     return 1;
 }
