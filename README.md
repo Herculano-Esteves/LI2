@@ -1,4 +1,6 @@
 # LI2
+links importantes, 
+https://typst.app/project/rxbrgj547KczgA3QrmkJRi  guiao
 ## COMO PROGRAMAR
 Aqui voces vao ter um mini tutorial para compilar, projetar e resolver isto, simao nao estragues tudo.
 
