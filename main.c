@@ -22,10 +22,6 @@ int main() {
     L'🂱', L'🂢', L'🂣', L'🂤', L'🂥', L'🂦', L'🂧', L'🂨', L'🂩', L'🂪', L'🂫', L'🃜', L'🂭', L'🂮'
     };
     int contadorcartas[56] = {1};
-    wchar_t c;
-
-    scanf("%lc", &c);
-
-    printf("Caractere lido: %lc\n", c+2);
+    printf("Caractere lido: %lc\n", cartasarray[0]);
     return 1;
 }
