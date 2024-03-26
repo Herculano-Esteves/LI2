@@ -5,8 +5,6 @@
 #include "guiao1.h"
 #include "guiao1.c"
 
-
-
 int main() {
     setlocale(LC_CTYPE, "C.UTF-8");
     wchar_t cartasarray[56] = {
@@ -22,6 +20,10 @@ int main() {
     L'🂱', L'🂢', L'🂣', L'🂤', L'🂥', L'🂦', L'🂧', L'🂨', L'🂩', L'🂪', L'🂫', L'🃜', L'🂭', L'🂮'
     };
     int contadorcartas[56] = {1};
-    printf("Caractere lido: %lc\n", cartasarray[0]);
+
+
+    funcaoguiao1();
+
+    
     return 1;
 }
