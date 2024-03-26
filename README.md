@@ -40,6 +40,9 @@ git checkout -b <vosso nome>
 
 git switch <a tua branch> (vais ter à tua branch, em principio vais lá dar direto)
 
+git push --set-upstream origin <vosso nome>
+
+
 ### Funcoes que se vao cansar de usar
 
 para dar push usem
