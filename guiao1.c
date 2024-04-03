@@ -32,15 +32,21 @@ void wprintlistacartas(int tamanho,CartaLista lista[]){
         }
 }
 //ordenar as cartas pelos numeros delas
-int ordCartaNumero(CartaLista lista[],int tamanho){
-    int auxint;
-    char auxchar;
-    for(int x = 0;x < tamanho;x++){
-        for(int y = x+1;y < tamanho;y++){
-            if(lista[x].valor > lista[y].valor){
-                
-            }
-        }
+int ordCartaNumero(CartaLista lista[],wchar_t carta[]){
+    wchar_t auxcarta;
+    CartaLista auxlista;
+    int i, j, min_idx; 
+    for (int i = 0; carta[i]; i++) 
+    { 
+        // Find the minimum element in unsorted array 
+        min_idx = i; 
+        for (j = i+1; carta[j]; j++) 
+          if (carta[j] < carta[min_idx]) 
+            min_idx = j; 
+  
+        // Swap the found minimum element with the first element 
+           if(min_idx != i) 
+            swap(&carta[min_idx], &carta[i]); 
     }
 }
 
@@ -56,7 +62,6 @@ void funcaoguiao1(){
         int tamanho = 0;
         for(;cartas[tamanho];tamanho++);
         CartaLista listaatual[10];
-        wprintf(L"o tamanho da string é :%d\n",tamanho);
         guardarvalores(cartas,listaatual); // atualiza a listaatual
         wprintlistacartas(cartas,listaatual);
     }
