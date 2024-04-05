@@ -86,6 +86,16 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     }
 }
 
+int conjuntoBool(CartaDef lista[],int tamanho)
+{
+    int res=0;
+    for (int i=0; i<tamanho;i++)
+    {
+
+    }
+
+}
+
 
 void funcaoguiao1(){
     wchar_t cartas[10];
