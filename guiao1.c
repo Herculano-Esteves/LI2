@@ -5,18 +5,22 @@
 #include <stdlib.h>
 #include "guiao1.h"
 
-Naipe naipe(wchar_t carta){
-    Naipe naipes[4] = {ESPADAS,COPAS,OUROS,PAUS};
+Naipe naipe(wchar_t carta)
+{
+    Naipe naipes[4] = {ESPADAS, COPAS, OUROS, PAUS};
     char r = naipes[(((carta / 16) % 16) - 10)];
     return r;
 }
 
-int valor(wchar_t carta){
-    return(carta % 16);
+int valor(wchar_t carta)
+{
+    return (carta % 16);
 }
 
-void guardarvalores(wchar_t cartas[],CartaDef listaatual[]){
-    for(int x = 0;cartas[x];x++){
+void guardarvalores(wchar_t cartas[], CartaDef listaatual[])
+{
+    for (int x = 0; cartas[x]; x++)
+    {
         listaatual[x].naipe = naipe(cartas[x]);
         listaatual[x].valor = valor(cartas[x]);
     }
@@ -59,8 +63,10 @@ void wprintfCartas(wchar_t cartas[]){
     wprintf(L"\n");
 }
 
-void wprintlistacartas(int tamanho,CartaDef lista[]){
-        for (int i = 0;i < tamanho; i++) {
+void wprintlistacartas(int tamanho, CartaDef lista[])
+{
+    for (int i = 0; i < tamanho; i++)
+    {
         char c = printnaipe(lista[i].naipe);
         wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i, c, lista[i].valor);
         }
@@ -69,7 +75,7 @@ void wprintlistacartas(int tamanho,CartaDef lista[]){
 //ordenar as cartas pelos numeros delas
 void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     wchar_t auxchar;
-    CartaDef auxlista = {ESPADAS,1};
+    CartaDef auxlista = {ESPADAS, 1};
     int i = 0, j = 0, min_idx = 0;
     for (i; i < tamanho; i++)
     {
@@ -86,24 +92,47 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     }
 }
 
+int sequenciaUnica(CartaDef lista[], int tamanho){
+    int i;
+    for(i = 0;lista[i].valor+1 == lista[i+1].valor;i++);
 
-void funcaoguiao1(){
+    if (i == tamanho-1) return 1;
+    return 0;
+}
+
+int sequenciaDupla(CartaDef lista[], int tamanho){
+    int i,w;
+    for(i = 0;i < tamanho-1;i++){
+        if (i % 2){
+            if(lista[i].valor+1 != lista[i+1].valor) return 0;
+        } else {
+            if(lista[i].valor != lista[i+1].valor) return 0;
+        }
+    }
+    for(w = 0; w < tamanho;w = w+2){
+
+    }
+    return 1;
+}
+
+void funcaoguiao1()
+{
     wchar_t cartas[10];
     CartaDef listaatual[10];
     int leituras = 0;
-    wscanf(L"%d",&leituras);
+    wscanf(L"%d", &leituras);
 
-
-    for(;leituras > 0;leituras--){
-        wscanf(L"%ls",cartas);
+    for (; leituras > 0; leituras--)
+    {
+        wscanf(L"%ls", cartas);
         int tamanho = 0;
-        for(;cartas[tamanho];tamanho++);
+        for (; cartas[tamanho]; tamanho++)
+            ;
         CartaDef listaatual[10];
         guardarvalores(cartas,listaatual); // atualiza a listaatual
         ordCartaNumero(cartas,listaatual,tamanho); // atualiza a lista atual por ordem
         wprintlistacartas(tamanho,listaatual);
         wprintfCartas(cartas);
+        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho));
     }
-
-
 }
