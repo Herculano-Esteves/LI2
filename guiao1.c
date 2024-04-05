@@ -3,19 +3,7 @@
 #include <math.h>
 #include <wchar.h>
 #include <stdlib.h>
-#include <guiao1.h>
-
-typedef enum naipe {
-  ESPADAS,
-  COPAS,
-  OUROS,
-  PAUS
-} Naipe;
-
-typedef struct {
-    Naipe naipe;   // Naipe da carta
-    int valor;  // Valor da carta
-} CartaDef;
+#include "guiao1.h"
 
 Naipe naipe(wchar_t carta){
     Naipe naipes[4] = {ESPADAS,COPAS,OUROS,PAUS};
@@ -33,7 +21,14 @@ void guardarvalores(wchar_t cartas[],CartaDef listaatual[]){
         listaatual[x].valor = valor(cartas[x]);
     }
 }
-
+void swaplista(CartaDef a[], int posinicial, int posfinal)
+{
+    CartaDef aux;
+    aux = a[posinicial];
+    a[posinicial]=a[posfinal];
+    a[posfinal]=aux;
+    return a;
+}
 char printnaipe(Naipe naipe){
     switch (naipe)
     {
@@ -64,13 +59,13 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     for (i; i < tamanho; i++)
     {
         min_idx = i;
-        for (j = i; j < tamanho; j++){
+        for (j = i; j < tamanho;j++){
             if ((lista[j].valor) < (lista[min_idx].valor)) min_idx = j;
             if (lista[j].valor == lista[min_idx].valor && lista[j].naipe < lista[min_idx].naipe)  min_idx = j;
         }
         // Swap the found minimum element with the first element
         if(min_idx != i){
-            swaplista(lista,min_idx,i,tamanho);
+            swaplista(lista,min_idx,i); // para trocar os elementos
         }
     }
 }
