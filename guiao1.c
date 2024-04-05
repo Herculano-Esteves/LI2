@@ -155,6 +155,6 @@ void funcaoguiao1()
         ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
         wprintlistacartas(tamanho, listaatual);
         wprintfCartas(cartas);
-        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho));
+        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual));
     }
 }
