@@ -3,6 +3,7 @@
 #include <math.h>
 #include <wchar.h>
 #include <stdlib.h>
+#include <guiao1.h>
 
 typedef enum naipe {
   ESPADAS,
@@ -14,7 +15,7 @@ typedef enum naipe {
 typedef struct {
     Naipe naipe;   // Naipe da carta
     int valor;  // Valor da carta
-} CartaLista;
+} CartaDef;
 
 Naipe naipe(wchar_t carta){
     Naipe naipes[4] = {ESPADAS,COPAS,OUROS,PAUS};
@@ -26,7 +27,7 @@ int valor(wchar_t carta){
     return(carta % 16);
 }
 
-void guardarvalores(wchar_t cartas[],CartaLista listaatual[]){
+void guardarvalores(wchar_t cartas[],CartaDef listaatual[]){
     for(int x = 0;cartas[x];x++){
         listaatual[x].naipe = naipe(cartas[x]);
         listaatual[x].valor = valor(cartas[x]);
@@ -49,16 +50,16 @@ char printnaipe(Naipe naipe){
     }
 }
 
-void wprintlistacartas(int tamanho,CartaLista lista[]){
+void wprintlistacartas(int tamanho,CartaDef lista[]){
         for (int i = 0;i < tamanho; i++) {
         char c = printnaipe(lista[i].naipe);
         wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i + 1, c, lista[i].valor);
         }
 }
 //ordenar as cartas pelos numeros delas
-void ordCartaNumero(wchar_t carta[],CartaLista lista[],int tamanho){
+void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     wchar_t auxchar;
-    CartaLista auxlista = {ESPADAS,1};
+    CartaDef auxlista = {ESPADAS,1};
     int i = 0, j = 0, min_idx = 0;
     for (i; i < tamanho; i++)
     {
@@ -69,14 +70,14 @@ void ordCartaNumero(wchar_t carta[],CartaLista lista[],int tamanho){
         }
         // Swap the found minimum element with the first element
         if(min_idx != i){
-            swaplista();
+            swaplista(lista,min_idx,i);
         }
     }
 }
 
 void funcaoguiao1(){
     wchar_t cartas[10];
-    CartaLista listaatual[10];
+    CartaDef listaatual[10];
     int leituras = 0;
     wscanf(L"%d",&leituras);
 
@@ -85,7 +86,7 @@ void funcaoguiao1(){
         wscanf(L"%ls",cartas);
         int tamanho = 0;
         for(;cartas[tamanho];tamanho++);
-        CartaLista listaatual[10];
+        CartaDef listaatual[10];
         guardarvalores(cartas,listaatual); // atualiza a listaatual
         ordCartaNumero(cartas,listaatual,tamanho);
         wprintlistacartas(tamanho,listaatual);

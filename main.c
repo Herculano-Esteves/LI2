@@ -1,12 +1,7 @@
-#include "guiao1.h"
 #include "guiao1.c"
 
 int main() {
     setlocale(LC_CTYPE, "C.UTF-8");
-    int contadorcartas[56];
-    for (int i = 0; i < 56; i++) {
-        contadorcartas[i] = 1;
-    }
     funcaoguiao1();
     return 1;
 }
