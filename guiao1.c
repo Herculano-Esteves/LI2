@@ -21,14 +21,22 @@ void guardarvalores(wchar_t cartas[],CartaDef listaatual[]){
         listaatual[x].valor = valor(cartas[x]);
     }
 }
-void swaplista(CartaDef a[], int posinicial, int posfinal)
+
+void swaplista(CartaDef lista[], int posinicial, int posfinal)
 {
     CartaDef aux;
-    aux = a[posinicial];
-    a[posinicial]=a[posfinal];
-    a[posfinal]=aux;
-    return a;
+    aux = lista[posinicial];
+    lista[posinicial]=lista[posfinal];
+    lista[posfinal]=aux;
 }
+
+void swapcarta(wchar_t cartas[],int posx, int posy){
+    wchar_t aux;
+    aux = cartas[posx];
+    cartas[posx] = cartas[posy];
+    cartas[posy] = aux;
+}
+
 char printnaipe(Naipe naipe){
     switch (naipe)
     {
@@ -44,13 +52,20 @@ char printnaipe(Naipe naipe){
         return '?';
     }
 }
+void wprintfCartas(wchar_t cartas[]){
+    for (int i = 0; i < 10 && cartas[i] != L'\0'; i++) {
+        wprintf(L"%lc", cartas[i]);
+    }
+    wprintf(L"\n");
+}
 
 void wprintlistacartas(int tamanho,CartaDef lista[]){
         for (int i = 0;i < tamanho; i++) {
         char c = printnaipe(lista[i].naipe);
-        wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i + 1, c, lista[i].valor);
+        wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i, c, lista[i].valor);
         }
 }
+
 //ordenar as cartas pelos numeros delas
 void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     wchar_t auxchar;
@@ -66,9 +81,11 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
         // Swap the found minimum element with the first element
         if(min_idx != i){
             swaplista(lista,min_idx,i); // para trocar os elementos
+            swapcarta(carta,min_idx,i);
         }
     }
 }
+
 
 void funcaoguiao1(){
     wchar_t cartas[10];
@@ -83,9 +100,9 @@ void funcaoguiao1(){
         for(;cartas[tamanho];tamanho++);
         CartaDef listaatual[10];
         guardarvalores(cartas,listaatual); // atualiza a listaatual
-        ordCartaNumero(cartas,listaatual,tamanho);
+        ordCartaNumero(cartas,listaatual,tamanho); // atualiza a lista atual por ordem
         wprintlistacartas(tamanho,listaatual);
-        
+        wprintfCartas(cartas);
     }
 
 
