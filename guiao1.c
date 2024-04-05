@@ -33,7 +33,14 @@ void guardarvalores(wchar_t cartas[],CartaDef listaatual[]){
         listaatual[x].valor = valor(cartas[x]);
     }
 }
-
+void swaplista(CartaDef a[], int posinicial, int posfinal,int tamanho)
+{
+    CartaDef aux;
+    aux = a[posinicial];
+    a[posinicial]=a[posfinal];
+    a[posfinal]=aux;
+    return a;
+}
 char printnaipe(Naipe naipe){
     switch (naipe)
     {
