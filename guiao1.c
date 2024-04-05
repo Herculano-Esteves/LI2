@@ -70,7 +70,7 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
         }
         // Swap the found minimum element with the first element
         if(min_idx != i){
-            swaplista(lista,min_idx,i);
+            swaplista(lista,min_idx,i,tamanho);
         }
     }
 }

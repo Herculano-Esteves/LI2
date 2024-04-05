@@ -1,2 +1,2 @@
 void funcaoguiao1();
-void swaplista(CartaDef a[], int posinicial, int posfinal);
+void swaplista(CartaDef a[], int posinicial, int posfinal,int tamanho);
