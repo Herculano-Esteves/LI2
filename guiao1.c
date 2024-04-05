@@ -111,6 +111,7 @@ int conjuntoBool(CartaDef lista[])
         else
             res = 0;
     }
+    return res;
 }
 
 void funcaoguiao1()
