@@ -124,17 +124,12 @@ int sequenciaDupla(CartaDef lista[], int tamanho){
     return 1;
 }
 
-int conjuntoBool(CartaDef lista[])
+int conjuntoBool(CartaDef lista[],int tamanho)
 {
-    int res = 0, j = 0;
-    for (int i = 1; i < 4; i++) // o maximo de cartas iguais é 4
-    {
-        if ((lista[j].valor == lista[i].valor) && (lista[j].naipe != lista[i].naipe))
-            res = 1;
-        else
-            res = 0;
-    }
-    return res;
+    int i;
+    for(i = 0;i < tamanho-1 && lista[i].valor == lista[i+1].valor;i++);
+    if (i == tamanho-1) return 1;
+    return 0;
 }
 
 void funcaoguiao1()
@@ -155,6 +150,6 @@ void funcaoguiao1()
         ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
         wprintlistacartas(tamanho, listaatual);
         wprintfCartas(cartas);
-        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual));
+        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual,tamanho));
     }
 }
