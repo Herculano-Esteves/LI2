@@ -4,13 +4,20 @@
 #include <wchar.h>
 #include <stdlib.h>
 
+typedef enum naipe {
+  ESPADAS,
+  COPAS,
+  OUROS,
+  PAUS
+} Naipe;
+
 typedef struct {
-    char naipe;   // Naipe da carta
+    Naipe naipe;   // Naipe da carta
     int valor;  // Valor da carta
 } CartaLista;
 
-char naipe(wchar_t carta){
-    char naipes[4] = {'E','C','O','P'};
+Naipe naipe(wchar_t carta){
+    Naipe naipes[4] = {ESPADAS,COPAS,OUROS,PAUS};
     char r = naipes[(((carta / 16) % 16) - 10)];
     return r;
 }
@@ -26,27 +33,44 @@ void guardarvalores(wchar_t cartas[],CartaLista listaatual[]){
     }
 }
 
+char printnaipe(Naipe naipe){
+    switch (naipe)
+    {
+    case ESPADAS:
+        return 'E';
+    case COPAS:
+        return 'C';
+    case OUROS:
+        return 'O';
+    case PAUS:
+        return 'P';
+    default:
+        return '?';
+    }
+}
+
 void wprintlistacartas(int tamanho,CartaLista lista[]){
         for (int i = 0;i < tamanho; i++) {
-        wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i + 1, lista[i].naipe, lista[i].valor);
+        char c = printnaipe(lista[i].naipe);
+        wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i + 1, c, lista[i].valor);
         }
 }
 //ordenar as cartas pelos numeros delas
-int ordCartaNumero(CartaLista lista[],wchar_t carta[]){
-    wchar_t auxcarta;
-    CartaLista auxlista;
-    int i, j, min_idx; 
-    for (int i = 0; carta[i]; i++) 
-    { 
-        // Find the minimum element in unsorted array 
-        min_idx = i; 
-        for (j = i+1; carta[j]; j++) 
-          if (carta[j] < carta[min_idx]) 
-            min_idx = j; 
-  
-        // Swap the found minimum element with the first element 
-           if(min_idx != i) 
-            swap(&carta[min_idx], &carta[i]); 
+void ordCartaNumero(wchar_t carta[],CartaLista lista[],int tamanho){
+    wchar_t auxchar;
+    CartaLista auxlista = {ESPADAS,1};
+    int i = 0, j = 0, min_idx = 0;
+    for (i; i < tamanho; i++)
+    {
+        min_idx = i;
+        for (j = i; j < tamanho; j++){
+            if ((lista[j].valor) < (lista[min_idx].valor)) min_idx = j;
+            if (lista[j].valor == lista[min_idx].valor && lista[j].naipe < lista[min_idx].naipe)  min_idx = j;
+        }
+        // Swap the found minimum element with the first element
+        if(min_idx != i){
+            swaplista();
+        }
     }
 }
 
@@ -63,7 +87,9 @@ void funcaoguiao1(){
         for(;cartas[tamanho];tamanho++);
         CartaLista listaatual[10];
         guardarvalores(cartas,listaatual); // atualiza a listaatual
-        wprintlistacartas(cartas,listaatual);
+        ordCartaNumero(cartas,listaatual,tamanho);
+        wprintlistacartas(tamanho,listaatual);
+        
     }
 
 

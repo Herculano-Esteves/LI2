@@ -7,7 +7,7 @@ int main() {
     for (int i = 0; i < 56; i++) {
         contadorcartas[i] = 1;
     }
-    funcaoguiao1();    
+    funcaoguiao1();
     return 1;
 }
 
