@@ -64,13 +64,13 @@ void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
     for (i; i < tamanho; i++)
     {
         min_idx = i;
-        for (j = i; j < tamanho; j++){
+        for (j = i; j < tamanho;j++){
             if ((lista[j].valor) < (lista[min_idx].valor)) min_idx = j;
             if (lista[j].valor == lista[min_idx].valor && lista[j].naipe < lista[min_idx].naipe)  min_idx = j;
         }
         // Swap the found minimum element with the first element
         if(min_idx != i){
-            swaplista(lista,min_idx,i,tamanho);
+            swaplista(lista,min_idx,i,tamanho); // para trocar os elementos
         }
     }
 }
