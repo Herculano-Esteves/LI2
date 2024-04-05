@@ -30,18 +30,20 @@ void swaplista(CartaDef lista[], int posinicial, int posfinal)
 {
     CartaDef aux;
     aux = lista[posinicial];
-    lista[posinicial]=lista[posfinal];
-    lista[posfinal]=aux;
+    lista[posinicial] = lista[posfinal];
+    lista[posfinal] = aux;
 }
 
-void swapcarta(wchar_t cartas[],int posx, int posy){
+void swapcarta(wchar_t cartas[], int posx, int posy)
+{
     wchar_t aux;
     aux = cartas[posx];
     cartas[posx] = cartas[posy];
     cartas[posy] = aux;
 }
 
-char printnaipe(Naipe naipe){
+char printnaipe(Naipe naipe)
+{
     switch (naipe)
     {
     case ESPADAS:
@@ -56,8 +58,10 @@ char printnaipe(Naipe naipe){
         return '?';
     }
 }
-void wprintfCartas(wchar_t cartas[]){
-    for (int i = 0; i < 10 && cartas[i] != L'\0'; i++) {
+void wprintfCartas(wchar_t cartas[])
+{
+    for (int i = 0; i < 10 && cartas[i] != L'\0'; i++)
+    {
         wprintf(L"%lc", cartas[i]);
     }
     wprintf(L"\n");
@@ -69,25 +73,30 @@ void wprintlistacartas(int tamanho, CartaDef lista[])
     {
         char c = printnaipe(lista[i].naipe);
         wprintf(L"Carta %d: Naipe: %c, Valor: %d\n", i, c, lista[i].valor);
-        }
+    }
 }
 
-//ordenar as cartas pelos numeros delas
-void ordCartaNumero(wchar_t carta[],CartaDef lista[],int tamanho){
+// ordenar as cartas pelos numeros delas
+void ordCartaNumero(wchar_t carta[], CartaDef lista[], int tamanho)
+{
     wchar_t auxchar;
     CartaDef auxlista = {ESPADAS, 1};
     int i = 0, j = 0, min_idx = 0;
     for (i; i < tamanho; i++)
     {
         min_idx = i;
-        for (j = i; j < tamanho;j++){
-            if ((lista[j].valor) < (lista[min_idx].valor)) min_idx = j;
-            if (lista[j].valor == lista[min_idx].valor && lista[j].naipe < lista[min_idx].naipe)  min_idx = j;
+        for (j = i; j < tamanho; j++)
+        {
+            if ((lista[j].valor) < (lista[min_idx].valor))
+                min_idx = j;
+            if (lista[j].valor == lista[min_idx].valor && lista[j].naipe < lista[min_idx].naipe)
+                min_idx = j;
         }
         // Swap the found minimum element with the first element
-        if(min_idx != i){
-            swaplista(lista,min_idx,i); // para trocar os elementos
-            swapcarta(carta,min_idx,i);
+        if (min_idx != i)
+        {
+            swaplista(lista, min_idx, i); // para trocar os elementos
+            swapcarta(carta, min_idx, i);
         }
     }
 }
@@ -115,6 +124,19 @@ int sequenciaDupla(CartaDef lista[], int tamanho){
     return 1;
 }
 
+int conjuntoBool(CartaDef lista[])
+{
+    int res = 0, j = 0;
+    for (int i = 1; i < 4; i++) // o maximo de cartas iguais é 4
+    {
+        if ((lista[j].valor == lista[i].valor) && (lista[j].naipe != lista[i].naipe))
+            res = 1;
+        else
+            res = 0;
+    }
+    return res;
+}
+
 void funcaoguiao1()
 {
     wchar_t cartas[10];
@@ -129,9 +151,9 @@ void funcaoguiao1()
         for (; cartas[tamanho]; tamanho++)
             ;
         CartaDef listaatual[10];
-        guardarvalores(cartas,listaatual); // atualiza a listaatual
-        ordCartaNumero(cartas,listaatual,tamanho); // atualiza a lista atual por ordem
-        wprintlistacartas(tamanho,listaatual);
+        guardarvalores(cartas, listaatual);          // atualiza a listaatual
+        ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
+        wprintlistacartas(tamanho, listaatual);
         wprintfCartas(cartas);
         wprintf(L"é sequencia unica: %d, é sequencia dupla: %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho));
     }
