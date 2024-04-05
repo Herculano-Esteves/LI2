@@ -105,12 +105,12 @@ int sequenciaUnica(CartaDef lista[], int tamanho){
     int i;
     for(i = 0;lista[i].valor+1 == lista[i+1].valor;i++);
 
-    if (i == tamanho-1) return 1;
+    if (i == tamanho-1 && i > 1) return 1;
     return 0;
 }
 
 int sequenciaDupla(CartaDef lista[], int tamanho){
-    int i,w;
+    int i,contador = 0;
     for(i = 0;i < tamanho-1;i++){
         if (i % 2){
             if(lista[i].valor+1 != lista[i+1].valor) return 0;
@@ -118,10 +118,8 @@ int sequenciaDupla(CartaDef lista[], int tamanho){
             if(lista[i].valor != lista[i+1].valor) return 0;
         }
     }
-    for(w = 0; w < tamanho;w = w+2){
-
-    }
-    return 1;
+    if (i > 2) return 1;
+    return 0;
 }
 
 int conjuntoBool(CartaDef lista[],int tamanho)
@@ -130,6 +128,17 @@ int conjuntoBool(CartaDef lista[],int tamanho)
     for(i = 0;i < tamanho-1 && lista[i].valor == lista[i+1].valor;i++);
     if (i == tamanho-1) return 1;
     return 0;
+}
+
+void outputsGuiao1(CartaDef lista[],wchar_t cartas[],int tamanho){
+//wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual,tamanho));
+    int dupla = sequenciaDupla(lista,tamanho);
+    if(conjuntoBool(lista,tamanho)){
+        wprintf(L"conjunto com %d cartas onde a carta mais alta é %lc\n", tamanho,cartas[tamanho-1]);
+    } else if (sequenciaUnica(lista,tamanho) || dupla){
+        if (dupla) wprintf(L"dupla ");
+        wprintf(L"sequência com %d cartas onde a carta mais alta é %lc\n", tamanho,cartas[tamanho-1]);
+    } else wprintf(L"Nada!\n");
 }
 
 void funcaoguiao1()
@@ -148,8 +157,8 @@ void funcaoguiao1()
         CartaDef listaatual[10];
         guardarvalores(cartas, listaatual);          // atualiza a listaatual
         ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
-        wprintlistacartas(tamanho, listaatual);
-        wprintfCartas(cartas);
-        wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual,tamanho));
+        //wprintlistacartas(tamanho, listaatual); // dá print à lista atual em cartasdef
+        //wprintfCartas(cartas); // dá print às cartas wchar
+        outputsGuiao1(listaatual,cartas,tamanho);
     }
 }
