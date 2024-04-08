@@ -2,7 +2,7 @@
 #include <locale.h>
 
 int main() {
-    setlocale(LC_CTYPE, "C.UTF-8");
+    setlocale(LC_ALL, "C.UTF-8");
     funcaoguiao1();
     return 0;
 }

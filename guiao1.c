@@ -104,21 +104,18 @@ int tamanhoCartas(wchar_t cartas[]){
 
 int sequenciaUnica(CartaDef lista[], int tamanho){
     int i;
-    for(i = 0;lista[i].valor+1 == lista[i+1].valor;i++);
+    for(i = 0;lista[i].valor+1 == lista[i+1].valor && i < tamanho-1;i++);
     if (i == tamanho-1 && i > 1) return 1;
     return 0;
 }
 
 int sequenciaDupla(CartaDef lista[], int tamanho){
-    int i;
-    for(i = 0;(i < tamanho-1) && (tamanho % 2 == 0);i++){
-        if (i % 2){
-            if(lista[i].valor+1 != lista[i+1].valor) return 0;
-        } else {
-            if(lista[i].valor != lista[i+1].valor) return 0;
-        }
+    int i=0;
+    if(lista[i].valor != lista[i+1].valor) return 0;
+    for(i = 2;(i < tamanho-1) && (tamanho % 2 == 0);i += 2){
+        if(lista[i].valor != lista[i+1].valor || lista[i-1].valor+1 != lista[i].valor) return 0;
     }
-    if (i == tamanho-1 && i/2 > 1) return 1;
+    if (i == tamanho && tamanho > 5) return 1;
     return 0;
 }
 
