@@ -45,6 +45,11 @@ build/
 *.idb
 *.pdb
 
+#outros
+*.zip
+*.json
+
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
