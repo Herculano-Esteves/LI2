@@ -64,7 +64,7 @@ void wprintfCartas(wchar_t cartas[])
     wprintf(L"\n");
 }
 
-void wprintlistacartas(CartaDef lista[],int tamanho)
+void wprintlistacartas(int tamanho, CartaDef lista[])
 {
     for (int i = 0; i < tamanho; i++)
     {
@@ -96,36 +96,47 @@ void ordCartaNumero(wchar_t carta[], CartaDef lista[], int tamanho)
     }
 }
 
-int tamanhoCartas(wchar_t cartas[]){
+void eleminarPos(wchar_t cartas[], int posicao){
+    for(int i = posicao; cartas[i];i++){
+        cartas[i] = cartas[i+1];
+    }
+}
+
+int corrigirCartas(wchar_t cartas[]){
     int i;
-    for(i = 0;cartas[i] != ' ' && cartas[i] != '\0';i++);
+    for(i = 0; cartas[i];i++){
+        if (cartas[i] == ' ') eleminarPos(cartas,i);
+        if (cartas[i] <= L'🂠' || cartas[i] > L'🃞') return 0;
+    }
+
     return i;
 }
 
 int sequenciaUnica(CartaDef lista[], int tamanho){
     int i;
     for(i = 0;lista[i].valor+1 == lista[i+1].valor;i++);
+
     if (i == tamanho-1 && i > 1) return 1;
     return 0;
 }
 
 int sequenciaDupla(CartaDef lista[], int tamanho){
     int i;
-    for(i = 0;(i < tamanho-1) && (tamanho % 2 == 0);i++){
+    for(i = 0;i < tamanho-1;i++){
         if (i % 2){
             if(lista[i].valor+1 != lista[i+1].valor) return 0;
         } else {
-            if(lista[i].valor != lista[i+1].valor || lista[i].naipe == lista[i+1].naipe) return 0;
+            if(lista[i].valor != lista[i+1].valor) return 0;
         }
     }
-    if ((i+1)/2 > 2 && i % 2 == 1) return 1;
+    if (i > 3 && i % 2 == 1) return 1;
     return 0;
 }
 
 int conjuntoBool(CartaDef lista[],int tamanho)
 {
     int i;
-    for(i = 0;i < tamanho-1 && lista[i].valor == lista[i+1].valor&& tamanho < 5;i++ );
+    for(i = 0;i < tamanho-1 && lista[i].valor == lista[i+1].valor;i++);
     if (i == tamanho-1){
         for(int w = 0;w < tamanho;w++){
             for(int n = w+1;n < tamanho;n++){
@@ -138,6 +149,7 @@ int conjuntoBool(CartaDef lista[],int tamanho)
 }
 
 void outputsGuiao1(CartaDef lista[],wchar_t cartas[],int tamanho){
+//wprintf(L"é sequencia unica: %d, é sequencia dupla: %d, é um conujunto %d\n",sequenciaUnica(listaatual,tamanho),sequenciaDupla(listaatual,tamanho),conjuntoBool(listaatual,tamanho));
     int dupla = sequenciaDupla(lista,tamanho);
     if(conjuntoBool(lista,tamanho)){
         wprintf(L"conjunto com %d cartas onde a carta mais alta é %lc\n", tamanho,cartas[tamanho-1]);
@@ -154,15 +166,15 @@ void funcaoguiao1()
     
     for (; leituras > 0; leituras--)
     {
-        wchar_t cartas[60];
-        CartaDef listaatual[60];
+        wchar_t cartas[100];
+        CartaDef listaatual[100];
+        wscanf(L"%ls", &cartas);
         int tamanho = 0;
-        if (wscanf(L"%ls%*c", &cartas) != '\n') {
-        tamanho = tamanhoCartas(cartas);
+        tamanho = corrigirCartas(cartas);
+        if (tamanho != 0){
         guardarvalores(cartas, listaatual);          // atualiza a listaatual
         ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
         outputsGuiao1(listaatual,cartas,tamanho);
-        //wprintlistacartas(listaatual,tamanho);
-        }else wprintf(L"Nada!\n");
+        } else wprintf(L"Nada!\n");
     }
 }
