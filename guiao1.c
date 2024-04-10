@@ -152,7 +152,7 @@ int filtarcartas(wchar_t cartas[],int tamanho){
     return 1;
 }
 
-void funcaoguiao1()
+int funcaoguiao1(int guiaoB)
 {
     int leituras = 0;
     wscanf(L"%d\n", &leituras);
@@ -175,6 +175,5 @@ void funcaoguiao1()
         //wprintf(L"%d\n",tamanho);
         
     }
-
-
+    return 0;
 }

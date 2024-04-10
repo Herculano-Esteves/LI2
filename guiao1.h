@@ -21,6 +21,7 @@ void swaplista(CartaDef lista[], int posinicial, int posfinal);
 void swapcarta(wchar_t cartas[], int posx, int posy);
 char printnaipe(Naipe naipe);
 
-void funcaoguiao1();
+int funcaoguiao1(int a);
+void funcaoGiaoB();
 
 #endif /* GUIAO1_H */
