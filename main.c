@@ -1,4 +1,4 @@
-#include "guiao1.h"
+#include "funcoesAux.h"
 #include <locale.h>
 
 int main() {
