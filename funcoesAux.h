@@ -9,7 +9,7 @@ typedef enum naipe {
   PAUS
 } Naipe;
 
-typedef struct cartaDef {
+typedef struct CartaDef {
   Naipe naipe;   // Naipe da carta
   int valor;  // Valor da carta
 } CartaDef;
@@ -20,7 +20,7 @@ void guardarvalores(wchar_t cartas[], CartaDef listaatual[]);
 void swaplista(CartaDef lista[], int posinicial, int posfinal);
 void swapcarta(wchar_t cartas[], int posx, int posy);
 char printnaipe(Naipe naipe);
-void wprintfCartas(wchar_t cartas[]);
+void wprintfCartas(wchar_t cartas[], int space);
 void wprintlistacartas(CartaDef lista[],int tamanho);
 void ordCartaNumero(wchar_t carta[], CartaDef lista[], int tamanho);
 int tamanhoCartas(wchar_t cartas[]);

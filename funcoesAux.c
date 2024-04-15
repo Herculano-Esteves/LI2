@@ -55,11 +55,12 @@ char printnaipe(Naipe naipe)
         return '?';
     }
 }
-void wprintfCartas(wchar_t cartas[])
+void wprintfCartas(wchar_t cartas[], int space)
 {
-    for (int i = 0; i < 10 && cartas[i] != L'\0'; i++)
+    for (int i = 0;cartas[i] != L'\0'; i++)
     {
         wprintf(L"%lc", cartas[i]);
+        if(cartas[i+1] && space) wprintf(L" ");
     }
     wprintf(L"\n");
 }
