@@ -7,11 +7,12 @@ typedef enum naipe {
   COPAS,
   OUROS,
   PAUS
-} Naipe;
+} Naipe; //naipe organizado e possivel comparar com < e >
 
 typedef struct CartaDef {
   Naipe naipe;   // Naipe da carta
   int valor;  // Valor da carta
+  int passo;
 } CartaDef;
 
 Naipe naipe(wchar_t carta);
@@ -20,16 +21,19 @@ void guardarvalores(wchar_t cartas[], CartaDef listaatual[]);
 void swaplista(CartaDef lista[], int posinicial, int posfinal);
 void swapcarta(wchar_t cartas[], int posx, int posy);
 char printnaipe(Naipe naipe);
-void wprintfCartas(wchar_t cartas[], int space);
-void wprintlistacartas(CartaDef lista[],int tamanho);
-void ordCartaNumero(wchar_t carta[], CartaDef lista[], int tamanho);
+void wprintfCartas(wchar_t cartas[],CartaDef def[], int space);
+void wprintlistacartas(CartaDef lista[]);
+void ordCartaNumeroDef(wchar_t carta[], CartaDef lista[], int tamanho);
 int tamanhoCartas(wchar_t cartas[]);
 int filtarcartas(wchar_t cartas[],int tamanho);
 int conjuntoBool(CartaDef lista[],int tamanho);
 int sequenciaDupla(CartaDef lista[], int tamanho);
+void ordCartas(wchar_t carta[], int tamanho);
 int sequenciaUnica(CartaDef lista[], int tamanho);
+int checkIfTrue(CartaDef lista[],int tamanho);
 
 void funcaoguiao1();
 void funcaoGiaoB();
+void funcaoGuiaoC();
 
 #endif /* GUIAO1_H */

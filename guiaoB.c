@@ -12,16 +12,6 @@ int checkIfEqual(int tamanhos[],int size){
     return 0;
 }
 
-int checkIfTrue(CartaDef lista[],int tamanho){
-    if(conjuntoBool(lista,tamanho)){
-        return 1;
-    } else if (sequenciaUnica(lista,tamanho)){
-        return 2;
-    } else if (sequenciaDupla(lista,tamanho)){
-        return 3;
-    } else return 0;
-}
-
 void swapArrayCarta(wchar_t cartasarray[][60], int t, int k) {
     wchar_t aux[60];
     memcpy(aux, cartasarray[t], sizeof(wchar_t) * 60);
@@ -57,8 +47,8 @@ void ordfinal(wchar_t cartasarray[][60] ,CartaDef defarray[][60] ,int numeroarra
     }
 }
 
-void printAux(wchar_t cartasarray[]){
-    wprintfCartas(cartasarray, 1);
+void printAux(wchar_t cartasarray[],CartaDef deflista[]){
+    wprintfCartas(cartasarray,deflista, 1);
 }
 
 void leiturasDasCartas(int numeroArrays,wchar_t cartasarray[][60], CartaDef defArray[][60], int tamanhoArray[]){
@@ -67,7 +57,7 @@ void leiturasDasCartas(int numeroArrays,wchar_t cartasarray[][60], CartaDef defA
         wscanf(L"%ls",cartasarray[n]);
         guardarvalores(cartasarray[n],defArray[n]);
         tamanhoArray[n] = tamanhoCartas(cartasarray[n]);
-        ordCartaNumero(cartasarray[n],defArray[n],tamanhoArray[n]);
+        ordCartaNumeroDef(cartasarray[n],defArray[n],tamanhoArray[n]);
     }
 }
 
@@ -76,7 +66,7 @@ void printFinal(int tamanhoarray, int i,int c, int numeroArrays, wchar_t cartasa
         ordfinal(cartasarray,defArray,numeroArrays,tamanhoarray);
         wprintf(L"Teste %d\n",i+1);
         for(int print = 0;print < numeroArrays;print++){
-            printAux(cartasarray[print]);
+            printAux(cartasarray[print],defArray[print]);
         }
     } 
     else wprintf(L"Teste %d\nCombinações não iguais!\n",i+1);

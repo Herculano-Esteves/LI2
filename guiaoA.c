@@ -60,7 +60,7 @@ void funcaoguiao1()
         tamanho = tamanhoCartas(cartas);
         if (filtarcartas(cartas,tamanho)){
         guardarvalores(cartas, listaatual);          // atualiza a listaatual
-        ordCartaNumero(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
+        ordCartaNumeroDef(cartas, listaatual, tamanho); // atualiza a lista atual por ordem
         outputsGuiao1(listaatual,cartas,tamanho);
         } else wprintf(L"Nada!\n");
 

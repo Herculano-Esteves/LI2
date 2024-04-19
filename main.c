@@ -3,7 +3,7 @@
 
 int main() {
     setlocale(LC_ALL, "C.UTF-8");
-    funcaoGiaoB();
+    funcaoGuiaoC();
     return 0;
 }
 
