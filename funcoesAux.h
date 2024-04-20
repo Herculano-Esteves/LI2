@@ -3,6 +3,8 @@
 #include <wchar.h>
 
 typedef enum naipe {
+  APAGADO,
+  PASSO,
   ESPADAS,
   COPAS,
   OUROS,
@@ -12,7 +14,6 @@ typedef enum naipe {
 typedef struct CartaDef {
   Naipe naipe;   // Naipe da carta
   int valor;  // Valor da carta
-  int passo;
 } CartaDef;
 
 Naipe naipe(wchar_t carta);
@@ -31,6 +32,10 @@ int sequenciaDupla(CartaDef lista[], int tamanho);
 void ordCartas(wchar_t carta[], int tamanho);
 int sequenciaUnica(CartaDef lista[], int tamanho);
 int checkIfTrue(CartaDef lista[],int tamanho);
+int cardBelongToString(CartaDef deck[],CartaDef carta,int tamanhoDeck);
+int belongToDeck(CartaDef arrayDef[][60],int tamanhoArray[], int numeroJogadas);
+void apagarCarta(wchar_t cartas[],CartaDef defenicoes[],int posErase);
+void removeCardsDeck(wchar_t wchardeck[],CartaDef defcartas[],CartaDef paraApagar[],int tamanhos[],int arrayLong);
 
 void funcaoguiao1();
 void funcaoGiaoB();

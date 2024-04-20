@@ -16,14 +16,19 @@ int valor(wchar_t carta)
 
 void guardarvalores(wchar_t cartas[], CartaDef listaatual[])
 {
+    for(int i = 0;listaatual[i].naipe;i++){
+        listaatual[i].naipe = APAGADO;
+        listaatual[i].valor = 0;
+    }
     if(cartas[0] != 'P'){
         for (int x = 0; cartas[x]; x++)
         {
             listaatual[x].naipe = naipe(cartas[x]);
             listaatual[x].valor = valor(cartas[x]);
-            listaatual[x].passo = 0;
         }
-    } else listaatual[0].passo = 1;
+    } else {
+        listaatual[0].naipe = PASSO;
+    }
 } // guarda os valores no formato CartaDef
 
 void swaplista(CartaDef lista[], int posinicial, int posfinal)
@@ -61,7 +66,7 @@ char printnaipe(Naipe naipe)
 
 void wprintfCartas(wchar_t cartas[],CartaDef def[], int space)
 {
-    if(def[0].passo){
+    if(def[0].naipe == PASSO){
         wprintf(L"PASSO");
     } else {
         for (int i = 0;cartas[i] != L'\0'; i++)
@@ -75,9 +80,9 @@ void wprintfCartas(wchar_t cartas[],CartaDef def[], int space)
 
 void wprintlistacartas(CartaDef lista[])
 {
-    for (int i = 0; lista[i].valor; i++)
+    for (int i = 0; lista[i].valor && lista[i].naipe != APAGADO; i++)
     {
-        if(lista[i].passo){
+        if(lista[i].naipe == PASSO){
             wprintf(L"É um PASSO\n");   
         } else {
             char c = printnaipe(lista[i].naipe);
@@ -98,7 +103,7 @@ void printIntArray(int array[], int tamanho) {
 
 void ordCartaNumeroDef(wchar_t carta[], CartaDef lista[], int tamanho)
 {
-    if(lista[0].passo);
+    if(lista[0].naipe == PASSO);
     else {
         int i, j = 0, min_idx = 0;
         for (i = 0; i < tamanho; i++)
@@ -125,7 +130,7 @@ int tamanhoCartas(wchar_t cartas[]){
     int i;
     for(i = 0;cartas[i] != ' ' && cartas[i] != '\0';i++);
     return i;
-} // devolve o tamanho do array ignorando espaços
+} // devolve o tamanho do array ignorando espaços comecando do 0
 
 int filtarcartas(wchar_t cartas[],int tamanho){
     for(int i = 0;i < tamanho;i++){
@@ -142,4 +147,47 @@ int checkIfTrue(CartaDef lista[],int tamanho){
     } else if (sequenciaDupla(lista,tamanho)){
         return 3;
     } else return 0;
+}
+
+// retorna a posicao a partir do 1, se der 0 nao pertence ao deck ou seja para usar em funçoes subtrair 1
+int cardPos(CartaDef deck[],CartaDef carta,int tamanhoDeck){
+    int m = tamanhoDeck/2,u = tamanhoDeck,l = 0;
+    while(l <= u){
+        m = l + (u-l)/2;
+        if(carta.valor == deck[m].valor && carta.naipe == deck[m].naipe) return m+1;
+        if(carta.valor < deck[m].valor || (carta.valor == deck[m].valor && carta.naipe < deck[m].naipe)){
+            u = m-1;
+        } else {
+            l = m+1;
+        }
+    }
+    return 0;
+}
+
+int belongToDeck(CartaDef arrayDef[][60],int tamanhoArray[], int numeroJogadas){
+    int r = 1;
+    for(int i = 0;i < tamanhoArray[numeroJogadas] && r != 0;i++){
+        r = cardPos(arrayDef[0],arrayDef[numeroJogadas][i],tamanhoArray[0]);
+    }
+    if(r) return 1;
+    else return 0;
+}
+
+void apagarCarta(wchar_t cartas[],CartaDef defenicoes[],int posErase){
+    int i;
+    for(i = posErase; cartas[i+1];i++){
+        cartas[i] = cartas[i+1];
+        defenicoes[i] = defenicoes[i+1];
+    }
+    cartas[i] = L'\0';
+    defenicoes[i].naipe = APAGADO;
+}
+
+//remove um array de cartas a um array de cartas
+void removeCardsDeck(wchar_t wchardeck[],CartaDef defcartas[],CartaDef paraApagar[],int tamanhos[],int arrayTamanhos){
+    for(int i = 0;i < tamanhos[arrayTamanhos];i++){
+        int posParaApagar = cardPos(defcartas,paraApagar[i],tamanhos[0]);
+        apagarCarta(wchardeck,defcartas,posParaApagar-1);
+        tamanhos[0] += -1;
+    }
 }
