@@ -33,9 +33,9 @@ void ordCartas(wchar_t carta[], int tamanho);
 int sequenciaUnica(CartaDef lista[], int tamanho);
 int checkIfTrue(CartaDef lista[],int tamanho);
 int cardBelongToString(CartaDef deck[],CartaDef carta,int tamanhoDeck);
-int belongToDeck(CartaDef arrayDef[][60],int tamanhoArray[], int numeroJogadas);
 void apagarCarta(wchar_t cartas[],CartaDef defenicoes[],int posErase);
 void removeCardsDeck(wchar_t wchardeck[],CartaDef defcartas[],CartaDef paraApagar[],int tamanhos[],int arrayLong);
+int cardPos(CartaDef deck[],CartaDef carta,int tamanhoDeck);
 
 void funcaoguiao1();
 void funcaoGiaoB();

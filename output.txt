@@ -1,23 +1,4 @@
 Teste 1
-🂶 🃆 🂸 🃈 🂹 🃙 🂪 🃚 🂼 🃜 🂭 🂽 🃝
-Vou ler 15 linhas, jogada pertence ao baralho? :1
-🂶 🃆 🂼 🃜 🂭 🂽 🃝
-🂸 🃈 🂹 🃙 🂪 🃚
-Carta 0: Naipe: C, Valor: 6
-Carta 1: Naipe: O, Valor: 6
-Carta 2: Naipe: C, Valor: 12
-Carta 3: Naipe: P, Valor: 12
-Carta 4: Naipe: E, Valor: 13
-Carta 5: Naipe: C, Valor: 13
-Carta 6: Naipe: P, Valor: 13
+🂡 🂱 🃁 🂢 🂳 🃄 🃕 🂶 🃆 🂧
 Teste 2
-🂶 🃆 🂸 🃈 🂹 🃙 🂪 🃚 🂼 🃜 🂭 🂽
-Vou ler 15 linhas, jogada pertence ao baralho? :1
-🂶 🃆 🂼 🃜 🂭 🂽
-🂸 🃈 🂹 🃙 🂪 🃚
-Carta 0: Naipe: C, Valor: 6
-Carta 1: Naipe: O, Valor: 6
-Carta 2: Naipe: C, Valor: 12
-Carta 3: Naipe: P, Valor: 12
-Carta 4: Naipe: E, Valor: 13
-Carta 5: Naipe: C, Valor: 13
+
