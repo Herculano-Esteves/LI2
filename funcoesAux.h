@@ -36,9 +36,19 @@ int cardBelongToString(CartaDef deck[],CartaDef carta,int tamanhoDeck);
 void apagarCarta(wchar_t cartas[],CartaDef defenicoes[],int posErase);
 void removeCardsDeck(wchar_t wchardeck[],CartaDef defcartas[],CartaDef paraApagar[],int tamanhos[],int arrayLong);
 int cardPos(CartaDef deck[],CartaDef carta,int tamanhoDeck);
+void removerCartaEmBaralho(wchar_t cartas[],CartaDef cartasDef[],CartaDef apagar);
+void copiarMatrizWChar(wchar_t destino[][60], wchar_t origem[][60]);
+void copiarMatrizDef(CartaDef destino[][60], CartaDef origem[][60]);
+void copiarMatrizInt(int destino[][60], int origem[][60]);
+int conjuntoDeReis(CartaDef jogadaAnterior[],int tamanho);
+int maisPequenoCNaipe(CartaDef carta0,CartaDef carta1);
+int maisPequenoSNaipe(CartaDef carta0,CartaDef carta1);
+
+
 
 void funcaoguiao1();
 void funcaoGiaoB();
 void funcaoGuiaoC();
+void funcaoGuiaoD();
 
 #endif /* GUIAO1_H */

@@ -132,10 +132,12 @@ void ordCartaNumeroDef(wchar_t carta[], CartaDef lista[], int tamanho)
 } // ordena as cartas e o defcartas
 
 int tamanhoCartas(wchar_t cartas[]){
-    int i;
-    for(i = 0;cartas[i] != ' ' && cartas[i] != '\0';i++);
-    return i;
-} // devolve o tamanho do array ignorando espaços comecando do 0
+    size_t tamanho = 0;
+    while (cartas[tamanho] != L'\0') {
+        tamanho++;
+    }
+    return tamanho;
+}
 
 int filtarcartas(wchar_t cartas[],int tamanho){
     for(int i = 0;i < tamanho;i++){
@@ -187,4 +189,48 @@ void removeCardsDeck(wchar_t wchardeck[],CartaDef defcartas[],CartaDef paraApaga
         apagarCarta(wchardeck,defcartas,posParaApagar);
         tamanhos[0] += -1;
     }
+}
+
+void removerCartaEmBaralho(wchar_t cartas[],CartaDef cartasDef[],CartaDef apagar){
+        int posParaApagar = cardPos(cartasDef,apagar,tamanhoCartas(cartas))-1;
+        apagarCarta(cartas,cartasDef,posParaApagar);
+}
+
+void copiarMatrizWChar(wchar_t destino[][60], wchar_t origem[][60]) { // somente usar em matriz[2][60] unicamente para esta tarefa
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 60; j++) {
+            destino[i][j] = origem[i][j];
+        }
+    }
+}
+
+void copiarMatrizDef(CartaDef destino[][60], CartaDef origem[][60]) { // somente usar em matriz[2][60] unicamente para esta tarefa
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 60; j++) {
+            destino[i][j] = origem[i][j];
+        }
+    }
+}
+
+void copiarMatrizInt(int destino[][60], int origem[][60]) { // somente usar em matriz[2][60] unicamente para esta tarefa
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 60; j++) {
+            destino[i][j] = origem[i][j];
+        }
+    }
+}
+
+int conjuntoDeReis(CartaDef jogadaAnterior[],int tamanho){
+    int i = 0;
+    for(;i < tamanho && jogadaAnterior[i].valor == 14;i++);
+    if(i == tamanho) return 1;
+    else return 0;
+}
+
+int maisPequenoCNaipe(CartaDef carta0,CartaDef carta1){ // carta0 < carta1
+    return (carta0.valor < carta1.valor || (carta0.valor == carta1.valor && carta0.naipe < carta1.naipe));
+}
+
+int maisPequenoSNaipe(CartaDef carta0,CartaDef carta1){ // carta0 < carta1
+    return (carta0.valor < carta1.valor);
 }
